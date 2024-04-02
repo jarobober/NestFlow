@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import axios from 'axios'
+import { apiAuthSignIn } from '@/api/auth' 
 import { useAsyncState } from '@vueuse/core'
+import { saveSession } from '@/utils/session'
 import BaseInput from '@/components/base/BaseInput.vue'
 
 const credentials = ref({
@@ -10,13 +11,13 @@ const credentials = ref({
 })
 
 const { state, isReady, isLoading, execute } = useAsyncState(async() => {
-  axios
-    .post('https://nestflow.api.deskree.com/api/v1/auth/accounts/sign-in/email', {
-      ...credentials.value
-    })
-    .then(response => {
-      console.log('qweqwe', response)
-    })},
+  try {
+    const { data } = await apiAuthSignIn(credentials.value)
+    saveSession(data.data)
+  } catch (error) {
+    console.log(error)
+  }
+},
   null, {
     immediate: false
   }
