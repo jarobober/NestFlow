@@ -1,6 +1,6 @@
 <template>
   <main>
     <div>DEFAULT LAYOUT</div>
-    <router-view />
+    <slot />
   </main>
 </template>

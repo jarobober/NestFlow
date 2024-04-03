@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { useLayouts } from '@/composables/useLayouts'
+
+const { layout } = useLayouts()
 </script>
 
 <template>
-  <RouterView />
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
 
 <style scoped>
