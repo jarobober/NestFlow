@@ -32,7 +32,7 @@ const {
   isFinished,
   errorFields,
   execute: executeValidator
-} = useAsyncValidator(credentials.value, rules, { manual: isValidationManual.value })
+} = useAsyncValidator(credentials.value, rules, { immediate: false, manual: false })
 
 const { state, isReady, isLoading, execute } = useAsyncState(
   async () => {
