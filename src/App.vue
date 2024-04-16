@@ -5,9 +5,11 @@ const { layout } = useLayouts()
 </script>
 
 <template>
-  <component :is="layout">
-    <router-view />
-  </component>
+  <v-app>
+    <component :is="layout">
+      <router-view />
+    </component>
+  </v-app>
 </template>
 
 <style scoped>
