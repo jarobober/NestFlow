@@ -53,10 +53,12 @@ const { state, isReady, isLoading, execute } = useAsyncState(
     immediate: false
   }
 )
+
+const isPassVisible = ref(false)
 </script>
 
 <template>
-  <Card class="nf-auth-card">
+  <!-- <Card class="nf-auth-card">
     <template #title>Sign In</template>
     <template #subtitle>Welcome to NestFlow</template>
     <template #content>
@@ -77,7 +79,26 @@ const { state, isReady, isLoading, execute } = useAsyncState(
       </div>
       <Button label="Submit" @click="execute()" />
     </template>
-  </Card>
+  </Card> -->
+  <v-card>
+    <v-card-title> Sign In </v-card-title>
+    <v-card-subtitle>
+      Welcome to NestFlow! 🚀 Dive into a world of productivity and organization.
+    </v-card-subtitle>
+    <v-card-text>
+      <v-form>
+        <v-text-field label="Email" variant="outlined" density="compact"></v-text-field>
+        <v-text-field
+          :append-inner-icon="isPassVisible ? 'mdi-eye-off' : 'mdi-eye'"
+          :type="isPassVisible ? 'text' : 'password'"
+          density="compact"
+          label="Password"
+          variant="outlined"
+          @click:append-inner="isPassVisible = !isPassVisible"
+        ></v-text-field>
+      </v-form>
+    </v-card-text>
+  </v-card>
 </template>
 
 <style lang="scss">
