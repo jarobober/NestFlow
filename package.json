@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@mdi/font": "^7.4.47",
     "@vueuse/core": "^10.9.0",
     "@vueuse/integrations": "^10.9.0",
     "async-validator": "^4.2.5",

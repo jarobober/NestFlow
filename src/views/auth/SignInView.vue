@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 import { apiAuthSignIn } from '@/api/auth'
 import { useAsyncState } from '@vueuse/core'
-import { useAsyncValidator } from '@vueuse/integrations/useAsyncValidator'
+import { rules, required } from '@/utils/forms'
 import { saveSession } from '@/utils/session'
-import BaseInput from '@/components/base/BaseInput.vue'
+import AuthCard from '@/views/auth/components/AuthCard.vue'
 
 import type { Rules } from 'async-validator'
 
@@ -12,38 +12,21 @@ const credentials = ref({
   email: '',
   password: ''
 })
-const rules: Rules = {
-  email: [
-    {
-      type: 'email',
-      required: true
-    }
-  ],
-  password: [
-    {
-      required: true
-    }
-  ]
-}
-const isValidationManual = ref(true)
+
+const formRef = ref()
+
+// const rules = ref([(v) => !!v || 'Name is required'])
 
 const {
-  pass,
-  isFinished,
-  errorFields,
-  execute: executeValidator
-} = useAsyncValidator(credentials.value, rules, { immediate: false, manual: false })
-
-const { state, isReady, isLoading, execute } = useAsyncState(
+  state,
+  isReady,
+  isLoading,
+  execute: signIn
+} = useAsyncState(
   async () => {
     try {
-      const { pass } = await executeValidator()
-      if (pass) {
-        const { data } = await apiAuthSignIn(credentials.value)
-        saveSession(data.data)
-      } else {
-        isValidationManual.value = false
-      }
+      const { data } = await apiAuthSignIn(credentials.value)
+      saveSession(data.data)
     } catch (error) {
       console.log(error)
     }
@@ -54,51 +37,51 @@ const { state, isReady, isLoading, execute } = useAsyncState(
   }
 )
 
+const submitForm = async () => {
+  const { valid } = await formRef.value.validate()
+  if (valid) signIn()
+}
+
 const isPassVisible = ref(false)
 </script>
 
 <template>
-  <!-- <Card class="nf-auth-card">
-    <template #title>Sign In</template>
-    <template #subtitle>Welcome to NestFlow</template>
-    <template #content>
-      <div>
-        <label>Email</label>
-        <BaseInput v-model="credentials.email" type="email" :invalid="errorFields.email" />
-        <p v-if="errorFields.email" class="nf-error">{{ errorFields.email[0].message }}</p>
-      </div>
-      <div class="nf-auth-card__password-section">
-        <label>Password</label>
-        <Password
-          v-model="credentials.password"
-          toggleMask
-          :feedback="false"
-          :invalid="errorFields.password"
-        />
-        <p v-if="errorFields.password" class="nf-error">{{ errorFields.password[0].message }}</p>
-      </div>
-      <Button label="Submit" @click="execute()" />
-    </template>
-  </Card> -->
-  <v-card>
-    <v-card-title> Sign In </v-card-title>
-    <v-card-subtitle>
-      Welcome to NestFlow! 🚀 Dive into a world of productivity and organization.
-    </v-card-subtitle>
-    <v-card-text>
-      <v-form>
-        <v-text-field label="Email" variant="outlined" density="compact"></v-text-field>
+  <auth-card>
+    <template #title> Sign In </template>
+    <template #subtitle>Welcome to NestFlow! 🚀 Dive in! </template>
+    <template #form>
+      <v-form ref="formRef" validate-on="blur">
         <v-text-field
+          v-model="credentials.email"
+          :rules="[rules.email, rules.required]"
+          clearable
+          label="Email"
+          variant="outlined"
+          density="compact"
+          hide-details="auto"
+          class="mb-4"
+        ></v-text-field>
+        <v-text-field
+          v-model="credentials.password"
+          :rules="[rules.required]"
+          clearable
           :append-inner-icon="isPassVisible ? 'mdi-eye-off' : 'mdi-eye'"
           :type="isPassVisible ? 'text' : 'password'"
           density="compact"
           label="Password"
           variant="outlined"
+          hide-details="auto"
+          class="mb-4"
           @click:append-inner="isPassVisible = !isPassVisible"
         ></v-text-field>
       </v-form>
-    </v-card-text>
-  </v-card>
+    </template>
+    <template #buttons>
+      <v-btn color="primary" class="w-100 d-block" @click="submitForm()">Sign in</v-btn>
+      <v-btn class="w-100 d-block ml-0 mt-2">Back to Sign up</v-btn>
+      <v-btn class="w-100 d-block ml-0 mt-2">Forgot password?</v-btn>
+    </template>
+  </auth-card>
 </template>
 
 <style lang="scss">
