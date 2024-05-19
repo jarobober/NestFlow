@@ -12,3 +12,16 @@ export function apiAuthSignIn({ email, password }: { email: string; password: st
     password
   })
 }
+
+/**
+ * Sign up with email and password
+ * @param {string} email
+ * @param {string} password
+ */
+
+export function apiAuthSignUp({ email, password }: { email: string; password: string }) {
+  return http.post('/auth/accounts/signup', {
+    email,
+    password
+  })
+}
