@@ -61,7 +61,7 @@ const isPassVisible = ref(false)
         ></v-text-field>
         <v-text-field
           v-model="credentials.password"
-          :rules="[rules.required]"
+          :rules="[rules.required, rules.minLength(6)]"
           clearable
           :append-inner-icon="isPassVisible ? 'mdi-eye-off' : 'mdi-eye'"
           :type="isPassVisible ? 'text' : 'password'"
