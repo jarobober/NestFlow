@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { apiAuthSignIn } from '@/api/auth'
+import { apiAuthSignUp } from '@/api/auth'
 import { useAsyncState } from '@vueuse/core'
 import { rules } from '@/utils/forms'
 import { saveSession } from '@/utils/session'
@@ -22,9 +22,9 @@ const {
 } = useAsyncState(
   async () => {
     try {
-      const { data } = await apiAuthSignIn(credentials.value)
+      const { data } = await apiAuthSignUp(credentials.value)
       saveSession(data.data)
-      router.push({ name: 'home' })
+      router.push({ name: 'SignIn' })
     } catch (error) {
       console.log(error)
     }
@@ -45,8 +45,8 @@ const isPassVisible = ref(false)
 
 <template>
   <auth-card>
-    <template #title> Sign In </template>
-    <template #subtitle>Welcome to NestFlow! 🚀 Dive in! </template>
+    <template #title> Sign Up </template>
+    <template #subtitle>Welcome to NestFlow! 🚀 Let's register! </template>
     <template #form>
       <v-form ref="formRef" validate-on="blur">
         <v-text-field
@@ -76,10 +76,11 @@ const isPassVisible = ref(false)
     </template>
     <template #buttons>
       <v-btn :loading="isLoading" color="primary" class="w-100 d-block" @click="submitForm()"
-        >Sign in</v-btn
+        >Sign up</v-btn
       >
-      <v-btn :to="{ name: 'SignUp' }" class="w-100 ml-0 mt-2">Back to Sign up</v-btn>
-      <v-btn class="w-100 d-block ml-0 mt-2">Forgot password?</v-btn>
+      <v-btn :active="false" :to="{ name: 'SignIn' }" class="w-100 ml-0 mt-2"
+        >Already have an account?</v-btn
+      >
     </template>
   </auth-card>
 </template>
