@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import data from '@/config/defaultLayout.json'
 
 const drawer = ref(false)
 const items = [
@@ -22,7 +23,7 @@ const items = [
 ]
 </script>
 <template>
-  <v-container>
+  <v-container class="nf-default-layout">
     <v-app-bar>
       <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -35,18 +36,28 @@ const items = [
       </div>
     </v-app-bar>
     <v-navigation-drawer v-model="drawer">
-      <v-list :items="items"></v-list>
+      <v-list :items="data.drawerItems"></v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn block> Logout </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
     <main>
-      <slot />
+      <v-container>
+        <slot />
+      </v-container>
     </main>
   </v-container>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .nf-default-layout {
   &__logo {
     height: 42px;
+  }
+  main {
+    margin-top: 64px;
   }
 }
 </style>
