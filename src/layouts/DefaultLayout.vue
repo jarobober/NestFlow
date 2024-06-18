@@ -44,7 +44,7 @@ const items = [
       </template>
     </v-navigation-drawer>
     <main>
-      <v-container>
+      <v-container :class="{ 'main-content--drawer-opened': drawer }" class="main-content">
         <slot />
       </v-container>
     </main>
@@ -58,6 +58,14 @@ const items = [
   }
   main {
     margin-top: 64px;
+  }
+  .main-content {
+    margin-left: 0;
+    // transition same as in nav drawer
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    &--drawer-opened {
+      margin-left: 256px;
+    }
   }
 }
 </style>

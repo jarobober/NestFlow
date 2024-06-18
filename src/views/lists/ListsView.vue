@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <main>Lists view</main>
+  <div>Lists view</div>
 </template>

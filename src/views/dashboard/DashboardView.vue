@@ -1,5 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <div>Dashboard view</div>
+  <v-row><v-col>Dashboard view</v-col></v-row>
 </template>
