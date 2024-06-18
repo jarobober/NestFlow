@@ -44,9 +44,9 @@ const items = [
       </template>
     </v-navigation-drawer>
     <main>
-      <v-container :class="{ 'main-content--drawer-opened': drawer }" class="main-content">
+      <div :class="{ 'main-content--drawer-opened': drawer }" class="main-content">
         <slot />
-      </v-container>
+      </div>
     </main>
   </v-container>
 </template>

@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/scheduler',
       name: 'scheduler',
-      component: () => import('@/views/dashboard/DashboardView.vue'),
+      component: () => import('@/views/scheduler/SchedulerView.vue'),
       meta: {
         layout: 'DefaultLayout'
       }

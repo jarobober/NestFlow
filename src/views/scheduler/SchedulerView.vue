@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SectionLayout from '@/layouts/SectionLayout.vue'
+</script>
 
 <template>
-  <div>Scheduler view</div>
+  <section-layout><template #title>Scheduler view</template></section-layout>
 </template>

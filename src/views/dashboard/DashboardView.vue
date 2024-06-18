@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SectionLayout from '@/layouts/SectionLayout.vue'
+</script>
 
 <template>
-  <v-row><v-col>Dashboard view</v-col></v-row>
+  <section-layout><template #title>Dashboard view</template></section-layout>
 </template>
