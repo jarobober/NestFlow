@@ -1,0 +1,25 @@
+{
+  "drawerItems": [
+    {
+      "title": "Dashboard",
+      "props": {
+        "to": "/",
+        "prepend-icon": "mdi-view-dashboard"
+      }
+    },
+    {
+      "title": "Lists",
+      "props": {
+        "to": "/lists",
+        "prepend-icon": "mdi-format-list-bulleted"
+      }
+    },
+    {
+      "title": "Scheduler",
+      "props": {
+        "to": "/scheduler",
+        "prepend-icon": "mdi-home-clock"
+      }
+    }
+  ]
+}
