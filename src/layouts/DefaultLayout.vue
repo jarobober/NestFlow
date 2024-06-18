@@ -3,24 +3,6 @@ import { ref } from 'vue'
 import data from '@/config/defaultLayout.json'
 
 const drawer = ref(false)
-const items = [
-  {
-    title: 'Foo',
-    value: 'foo'
-  },
-  {
-    title: 'Bar',
-    value: 'bar'
-  },
-  {
-    title: 'Fizz',
-    value: 'fizz'
-  },
-  {
-    title: 'Buzz',
-    value: 'buzz'
-  }
-]
 </script>
 <template>
   <v-container class="nf-default-layout">
