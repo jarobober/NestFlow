@@ -6,5 +6,5 @@ import { http } from '@/utils/request'
  */
 
 export function apiGetUser(uid: string) {
-  return http.get(`/api/v1/rest/collections/users/${uid}`)
+  return http.get(`/rest/collections/users/${uid}`)
 }
