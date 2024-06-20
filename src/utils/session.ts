@@ -5,3 +5,7 @@ export function saveSession(sessionData: any) {
 export function getSession() {
   return JSON.parse(localStorage.getItem('session') || '{}')
 }
+
+export function removeSession() {
+  localStorage.removeItem('session')
+}

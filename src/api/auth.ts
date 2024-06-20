@@ -25,3 +25,14 @@ export function apiAuthSignUp({ email, password }: { email: string; password: st
     password
   })
 }
+
+/**
+ * Refresh token
+ * @param {string} refresh_token
+ */
+
+export function apiRefreshToken(refresh_token: string) {
+  return http.post('/auth/accounts/token/refresh', {
+    refresh_token
+  })
+}

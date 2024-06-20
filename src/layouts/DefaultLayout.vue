@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useAppStore } from '@/stores/app'
 import data from '@/config/defaultLayout.json'
 
+const appStore = useAppStore()
+const { logout } = appStore
 const drawer = ref(false)
 </script>
 <template>
@@ -21,7 +24,7 @@ const drawer = ref(false)
       <v-list :items="data.drawerItems"></v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn block> Logout </v-btn>
+          <v-btn block @click="logout"> Logout </v-btn>
         </div>
       </template>
     </v-navigation-drawer>
