@@ -15,8 +15,7 @@ http.interceptors.request.use(
     if (Object.keys(sessionData).length) {
       config.headers.Authorization = `Bearer ${sessionData.idToken}`
     } else {
-      //   // If token doesn't exist, redirect to sign-in page
-      //   // TODO: handle router instead of location.href
+      // If token doesn't exist, redirect to sign-in page
       router.push({ name: 'SignIn' })
     }
 
@@ -40,7 +39,7 @@ http.interceptors.response.use(
       try {
         const sessionData = getSession()
         const newTokenData = await apiRefreshToken(sessionData.refreshToken) // Implement your refreshToken function
-        saveSession(newTokenData) // Update session with new tokens
+        saveSession(newTokenData)
         originalRequest.headers.Authorization = `Bearer ${newTokenData.idToken}`
         return http(originalRequest) // Retry the original request with new token
       } catch (refreshError) {
