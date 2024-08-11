@@ -26,7 +26,7 @@ defineExpose({ showDialog, hideDialog })
         <v-spacer></v-spacer>
 
         <v-btn variant="text" @click="hideDialog()">Close</v-btn>
-        <v-btn variant="text" @click="hideDialog()">Save</v-btn>
+        <v-btn variant="text" @click="$emit('submit')">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
