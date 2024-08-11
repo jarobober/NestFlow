@@ -23,7 +23,8 @@ const {
   async () => {
     try {
       const { data } = await apiAuthSignIn(credentials.value)
-      saveSession(data.data)
+      console.log('qqqqqq', data)
+      saveSession(data)
       router.push({ name: 'home' })
     } catch (error) {
       console.log(error)

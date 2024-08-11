@@ -6,10 +6,10 @@ import router from '@/router'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
-    user: useAsyncState(async () => {
-      const session = getSession()
-      return await apiGetUser(session.uid)
-    }, null)
+    // user: useAsyncState(async () => {
+    //   const session = getSession()
+    //   return await apiGetUser(session.uid)
+    // }, null)
   }),
   actions: {
     logout() {

@@ -7,7 +7,7 @@ import { http } from '@/utils/request'
  */
 
 export function apiAuthSignIn({ email, password }: { email: string; password: string }) {
-  return http.post('/auth/accounts/sign-in/email', {
+  return http.post('/users/login', {
     email,
     password
   })
