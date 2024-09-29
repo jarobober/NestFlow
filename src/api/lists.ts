@@ -18,8 +18,8 @@ interface ListItem {
 }
 
 interface ListData {
-  listName: string
-  items: ListItem[]
+  name: string
+  body: string
 }
 
 export function apiPostList(payload: ListData) {

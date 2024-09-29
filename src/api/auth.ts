@@ -20,7 +20,7 @@ export function apiAuthSignIn({ email, password }: { email: string; password: st
  */
 
 export function apiAuthSignUp({ email, password }: { email: string; password: string }) {
-  return http.post('/auth/accounts/signup', {
+  return http.post('/users/register', {
     email,
     password
   })

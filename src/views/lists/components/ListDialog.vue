@@ -4,6 +4,8 @@ import { useAsyncState } from '@vueuse/core'
 import { apiPostList } from '@/api/lists'
 import BaseDialog from '@/components/base/BaseDialog.vue'
 import BaseInput from '@/components/base/BaseInput.vue'
+import TodoItem from '@/views/lists/components/TodoItem.vue'
+import TipTap from '@/components/common/TipTap.vue'
 
 const dialogRef = ref()
 
@@ -15,9 +17,16 @@ const hideListDialog = () => {
   dialogRef.value?.hideDialog()
 }
 
+const DEFAULT_TASK = {
+  completed: false,
+  text: ''
+}
+
 const list = ref({
-  listName: '',
-  items: []
+  name: '',
+  body: `<ul data-type="taskList">
+          <li data-type="taskItem" data-checked="true">A list item</li>
+        </ul>`
 })
 
 const { isLoading, execute: createList } = useAsyncState(
@@ -42,9 +51,11 @@ defineExpose({ showListDialog, hideListDialog })
 <template>
   <base-dialog ref="dialogRef" @submit="submitForm">
     <template #title>Add list</template>
+    <template #subtitle>Provide list name and at least one list item to create a list</template>
     <template #content>
       <v-form ref="formRef" validate-on="blur">
-        <base-input v-model="list.listName" label="List name"></base-input>
+        <base-input v-model="list.name" label="List name"></base-input>
+        <tip-tap v-model="list.body"></tip-tap>
       </v-form>
     </template>
   </base-dialog>
