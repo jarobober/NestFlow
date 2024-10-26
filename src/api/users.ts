@@ -6,5 +6,6 @@ import { http } from '@/utils/request'
  */
 
 export function apiGetUser(uid: string) {
+  // todo: to remove or change after switching to node backend
   return http.get(`/rest/collections/users/${uid}`)
 }

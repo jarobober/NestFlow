@@ -17,6 +17,11 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
+    "@tiptap/extension-task-item": "^2.7.4",
+    "@tiptap/extension-task-list": "^2.7.4",
+    "@tiptap/pm": "^2.7.4",
+    "@tiptap/starter-kit": "^2.7.4",
+    "@tiptap/vue-3": "^2.7.4",
     "@vueuse/core": "^10.9.0",
     "axios": "^1.6.8",
     "pinia": "^2.1.7",
